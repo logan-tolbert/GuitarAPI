@@ -15,7 +15,10 @@ namespace GuitarAPI.Services
         {
             _repo = repo;
         }
-
+        public async Task CreateAsync(Chord chord)
+        {
+            await _repo.CreateAsync(chord);
+        }
         public async Task<IEnumerable<Chord>> GetAllAsync()
         {
             return await _repo.GetAllAsync();
