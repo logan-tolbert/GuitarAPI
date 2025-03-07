@@ -13,22 +13,7 @@ public class ChordRepo : IChordRepo
     {
         _db = db;
     }
-
-    public async Task<IEnumerable<Chord>> GetAllAsync()
-    {
-        var sql = @"Select * FROM Chords;";
-
-        return await _db.LoadDataAsync<Chord, dynamic>(sql, new { });
-    }
-
-    public async Task<Chord?> GetChordByNameAsync(string name)
-    {
-        string sql = @"SELECT * FROM Chords WHERE Name = @Name;";
-        var result = await _db.LoadDataAsync<Chord, dynamic>(sql, new { Name = name });
-        return result.FirstOrDefault();
-    }
-
-    public async Task AddChordAsync(Chord chord)
+    public async Task CreateAsync(Chord chord)
     {
         string sql = @"INSERT INTO Chords 
                     (Name, FingerPlacement, Tuning, Noted)
@@ -36,4 +21,19 @@ public class ChordRepo : IChordRepo
                     (@Name, @FingerPlacement, @Tuning, @Notes);";
         await _db.SaveDataAsync<dynamic, dynamic>(sql, chord);
     }
+    public async Task<IEnumerable<Chord>> GetAllAsync()
+    {
+        var sql = @"Select * FROM Chords;";
+
+        return await _db.LoadDataAsync<Chord, dynamic>(sql, new { });
+    }
+
+    public async Task<Chord?> GetByNameAsync(string name)
+    {
+        string sql = @"SELECT * FROM Chords WHERE Name = @Name;";
+        var result = await _db.LoadDataAsync<Chord, dynamic>(sql, new { Name = name });
+        return result.FirstOrDefault();
+    }
+
+
 }

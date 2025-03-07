@@ -4,7 +4,7 @@ namespace GuitarAPI.Repo;
 
 public interface IChordRepo
 {
-    Task AddChordAsync(Chord chord);
+    Task CreateAsync(Chord chord);
     Task<IEnumerable<Chord>> GetAllAsync();
-    Task<Chord?> GetChordByNameAsync(string name);
+    Task<Chord?> GetByNameAsync(string name);
 }
