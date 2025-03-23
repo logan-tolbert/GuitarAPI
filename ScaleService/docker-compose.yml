@@ -1,0 +1,26 @@
+services:
+  scalesapi:
+    build:
+      context: ./src/ScaleAPI
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8080"
+      - "8083:8081"
+    environment:
+      - ConnectionStrings__ScaleDB=Server=scaledatabase;Database=Scales;User Id=sa;Password=YourStrong(!)Password123;
+    depends_on:
+      - scalesdatabase
+
+  scalesdatabase:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: scalesdatabase
+    environment:
+      SA_PASSWORD: "YourStrong(!)Password123"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1434:1433"
+    volumes:
+      - scalesdata:/var/opt/mssql
+
+volumes:
+  scalesdata:
