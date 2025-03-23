@@ -1,6 +1,5 @@
 using ChordAPI.Models;
 using ChordAPI.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ChordAPI.Controllers;

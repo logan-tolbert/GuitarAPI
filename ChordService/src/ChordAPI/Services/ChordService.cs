@@ -4,13 +4,10 @@ using ChordAPI.Models;
 
 namespace ChordAPI.Services;
 
-public class ChordService
+public class ChordService(IChordRepo repo)
 {
-    private readonly IChordRepo _repo;
-    public ChordService(IChordRepo repo)
-    {
-        _repo = repo;
-    }
+    private readonly IChordRepo _repo = repo;
+
     public async Task CreateAsync(Chord chord)
     {
         await _repo.CreateAsync(chord);
@@ -22,12 +19,8 @@ public class ChordService
 
     public async Task<Chord> GetByNameAsync(string name)
     {
-        var chord = await _repo.GetByNameAsync(name);
-
-        if (chord == null)
-        {
+        var chord = await _repo.GetByNameAsync(name) ??
             throw new KeyNotFoundException($"Chord with name '{name}' not found.");
-        }
 
         return chord;
     }

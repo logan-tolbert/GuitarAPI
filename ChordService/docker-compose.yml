@@ -7,7 +7,7 @@ services:
       - "8080:8080"
       - "8081:8081"
     environment:
-      - ConnectionStrings__ChordDB=Server=chorddatabase;Database=ChordServiceDb;User Id=sa;Password=YourStrong(!)Password123;
+      - ConnectionStrings__ChordDB=Server=chorddatabase;Database=Chords;User Id=sa;Password=YourStrong(!)Password123;
     depends_on:
       - chorddatabase
 

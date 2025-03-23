@@ -4,7 +4,7 @@ using Microsoft.Data.SqlClient;
 
 namespace ChordAPI.Data.Access;
 
-public class SqlDbContext(IConfiguration config) : ISqlDbContext
+public class DapperSqlDbContext(IConfiguration config) : IDapperDbContext
 {
     private readonly IConfiguration _config = config;
 

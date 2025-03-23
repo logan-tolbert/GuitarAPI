@@ -4,7 +4,7 @@ using ChordAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddScoped<ISqlDbContext, SqlDbContext>();
+builder.Services.AddScoped<IDapperDbContext, DapperSqlDbContext>();
 builder.Services.AddScoped<ChordRepo>();
 builder.Services.AddScoped<ChordService>();
 

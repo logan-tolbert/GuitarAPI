@@ -4,9 +4,9 @@ using ChordAPI.Models;
 
 namespace ChordAPI.Data.Repository;
 
-public class ChordRepo(ISqlDbContext db) : IChordRepo
+public class ChordRepo(IDapperDbContext db) : IChordRepo
 {
-    private readonly ISqlDbContext _db = db;
+    private readonly IDapperDbContext _db = db;
 
     public async Task CreateAsync(Chord chord)
     {

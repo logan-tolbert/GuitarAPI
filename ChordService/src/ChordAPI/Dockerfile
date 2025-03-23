@@ -9,12 +9,9 @@ RUN dotnet restore "ChordAPI.csproj"
 COPY . .
 RUN dotnet build "ChordAPI.csproj" -c Debug -o /app/build
 
-FROM build AS publish
-RUN dotnet publish "ChordAPI.csproj" -c Debug -o /app/publish
-
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=build /app/build .
 
 EXPOSE 8080
 EXPOSE 8081
